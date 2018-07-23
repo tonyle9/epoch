@@ -87,7 +87,7 @@ set_env(ContractPubKey, Height, Trees, API, VmVersion) ->
       chainAPI          => API,
       vm_version        => VmVersion}.
 
-call_common(#{ caller     := Caller
+call_common(#{ caller     := CallerPubkey
              , contract   := ContractPubKey
              , gas        := Gas
              , gas_price  := GasPrice
@@ -100,7 +100,7 @@ call_common(#{ caller     := Caller
              , trees      := Trees
              }, Spec) ->
     <<Address:?PUB_SIZE/unit:8>> = ContractPubKey,
-    <<CallerAddr:?PUB_SIZE/unit:8>> = Caller,
+    <<CallerAddr:?PUB_SIZE/unit:8>> = CallerPubkey,
     Exec = maps:get(exec, Spec),
     try aevm_eeevm_state:init(
 	  Spec#{ exec => Exec#{ code       => Code,
