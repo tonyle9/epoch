@@ -12,7 +12,7 @@
 -export([terminate/3]).
 
 -record(handler, {fsm_pid            :: pid() | undefined,
-                  channel_id         :: aesc_channels:id() | undefined,
+                  channel_id         :: aesc_channels:pubkey() | undefined,
                   job_id             :: term(),
                   role               :: initiator | responder | undefined,
                   host               :: binary() | undefined,
