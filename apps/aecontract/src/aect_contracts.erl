@@ -274,10 +274,6 @@ active(#contract{active = Active}) ->
 referrer_ids(#contract{referrer_ids = ReferrerIds}) ->
     ReferrerIds.
 
--spec referrer_pubkeys(contract()) -> list(aec_keys:pubkey()).
-referrer_pubkeys(#contract{referrer_ids = ReferrerIds}) ->
-    [aec_id:specialize(Id, contract) || Id <- ReferrerIds].
-
 %% The amount deposited at contract creation.
 -spec deposit(contract()) -> amount().
 deposit(#contract{deposit = Deposit}) ->
@@ -338,7 +334,7 @@ assert_fields(C) ->
            , {store,      C#contract.store}
            , {log,        C#contract.log}
            , {active,     C#contract.active}
-           , {referrers,  referrer_pubkeys(C)}
+           , {referrers,  referrer_ids(C)}
            , {deposit,    C#contract.deposit}
            ],
     List1 = [try assert_field(X, Y, C), [] catch _:X -> X end
