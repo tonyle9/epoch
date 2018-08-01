@@ -1786,15 +1786,15 @@ get_channel_by_pubkey(_Config) ->
 
     {ok, 200, #{
         <<"id">> := ChannelId,
-        <<"initiator">> := Initiator,
-        <<"responder">> := Responder,
-        <<"delegates">> := [],         %% Update needed
+        <<"initiator_id">> := InitiatorId,
+        <<"responder_id">> := ResponderId,
+        <<"delegate_ids">> := [],         %% Update needed
         <<"state_hash">> := StateHash
       }} = get_channel_by_pubkey_sut(ChannelId),
 
-    ?assertEqual({ok, IPub}, aec_base58c:safe_decode(account_pubkey, Initiator)),
-    ?assertEqual({ok, RPub}, aec_base58c:safe_decode(account_pubkey, Responder)),
-    ?assertMatch({ok, _}, aec_base58c:safe_decode(block_state_hash, StateHash)),
+    ?assertEqual({ok, IPub}, aec_base58c:safe_decode(account_pubkey, InitiatorId)),
+    ?assertEqual({ok, RPub}, aec_base58c:safe_decode(account_pubkey, ResponderId)),
+    ?assertMatch({ok, _}, aec_base58c:safe_decode(state, StateHash)),
     ok.
 
 get_channel_by_pubkey_sut(PubKey) ->
