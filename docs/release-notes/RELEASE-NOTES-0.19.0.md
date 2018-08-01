@@ -14,6 +14,7 @@ It:
   no forcing progress on-chain yet - this does not impact consesus.
 * Enriches channels WebSocket API with functionality for getting balances and
   proof of inclusion.
+* Change PoW to 2^30 node graph. This impacts consensus.
 
 [this-release]: https://github.com/aeternity/epoch/releases/tag/v0.19.0
 
